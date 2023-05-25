@@ -9,7 +9,7 @@ export const Layout: FC<Props> = (props) => {
   return (
     <div>
       {props.headerSlot}
-      <main className="container">
+      <main className="container px-5">
         <Outlet />
       </main>
       <footer></footer>

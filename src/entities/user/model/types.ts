@@ -1,4 +1,4 @@
-export interface User {
+export interface UserSnakeKeys {
   id: Id
   email: Email
   id_role: Id
@@ -6,3 +6,5 @@ export interface User {
   date_create: string
   last_name: string
 }
+
+export type User = SnakeToCamelCaseObject<UserSnakeKeys>

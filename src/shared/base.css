@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body font-normal text-grey
+  }
+
+  h1 {
+    @apply font-header font-medium text-2xl leading-7 text-red;
+  }
+}

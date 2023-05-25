@@ -1,1 +1,1 @@
-export type { User } from './model/types.ts'
+export type { User, UserSnakeKeys } from './model/types.ts'

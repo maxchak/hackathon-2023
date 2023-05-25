@@ -7,7 +7,7 @@ export const signupThunk = createAsyncThunk<
   void,
   RequestSignupBody,
   { state: RootState }
->('session/signup', async (body: RequestSignupBody, { dispatch }) => {
+>('session/signup', async (body, { dispatch }) => {
   try {
     await dispatch(sessionApi.endpoints.signup.initiate(body)).unwrap()
   } catch (error) {

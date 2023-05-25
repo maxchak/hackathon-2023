@@ -1,3 +1,3 @@
-import { Layout } from '@/shared/ui/Layout.tsx'
+import { Layout } from '@/shared/ui'
 
 export const baseLayout = <Layout />

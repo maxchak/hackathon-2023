@@ -4,7 +4,11 @@ export interface RequestLoginBody {
 }
 
 export interface RequestSignupBody {
-  name: string
-  email: string
+  company_name: string
+  first_name: string
+  last_name: string
+  email: Email
   password: string
 }
+
+export type SignupBody = SnakeToCamelCaseObject<RequestSignupBody>

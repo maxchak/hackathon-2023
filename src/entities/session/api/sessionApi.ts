@@ -9,7 +9,7 @@ export const sessionApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     login: build.mutation<Session, RequestLoginBody>({
       query: (body) => ({
-        url: '/account/sign-in',
+        url: '/auth/sign-in',
         method: 'POST',
         body,
       }),
@@ -19,7 +19,7 @@ export const sessionApi = baseApi.injectEndpoints({
     }),
     signup: build.mutation<Session, RequestSignupBody>({
       query: (body) => ({
-        url: '/account/sign-up',
+        url: '/auth/sign-up',
         method: 'POST',
         body,
       }),
@@ -29,14 +29,14 @@ export const sessionApi = baseApi.injectEndpoints({
     }),
     refresh: build.query<Session, void>({
       query: () => ({
-        url: '/account/refresh_token',
+        url: '/auth/refresh_token',
       }),
       // providesTags: [SESSION_TAG],
       transformResponse: (response: ResponseSession) =>
         toCamelCase<ResponseSession>(response),
     }),
     logout: build.query<void, void>({
-      query: () => '/account/logout',
+      query: () => '/auth/logout',
     }),
   }),
 })
