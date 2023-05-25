@@ -7,18 +7,28 @@ import { User } from '@/entities/user'
 
 interface InitialState {
   user: null | User
+  isLoading: boolean
+  _isInit: boolean
 }
 
 const initialState: InitialState = {
   user: null,
+  isLoading: false,
+  _isInit: false,
 }
 
 export const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
+    initUser(state) {
+      state._isInit = true
+    },
     setUser(state, action: PayloadAction<InitialState['user']>) {
       state.user = action.payload
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -50,3 +60,5 @@ export const sessionSlice = createSlice({
     )
   },
 })
+
+export const { initUser } = sessionSlice.actions

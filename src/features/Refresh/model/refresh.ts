@@ -1,12 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-import { sessionApi } from '@/entities/session'
+import { sessionApi, sessionSlice } from '@/entities/session'
 import { isFetchBaseQueryError } from '@/shared/api'
 
 export const refreshThunk = createAsyncThunk<void, void, { state: RootState }>(
   'session/refresh',
   async (_: unknown, { dispatch }) => {
     try {
+      dispatch(sessionSlice.actions.setLoading(true))
       await dispatch(sessionApi.endpoints.refresh.initiate()).unwrap()
     } catch (error) {
       if (isFetchBaseQueryError(error)) {
@@ -16,6 +17,8 @@ export const refreshThunk = createAsyncThunk<void, void, { state: RootState }>(
       }
 
       throw new Error('Unknown error')
+    } finally {
+      dispatch(sessionSlice.actions.setLoading(false))
     }
   },
 )

@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Outlet, ScrollRestoration } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 interface Props {
   headerSlot?: ReactNode
@@ -13,7 +13,6 @@ export const Layout: FC<Props> = (props) => {
         <Outlet />
       </main>
       <footer></footer>
-      <ScrollRestoration />
     </div>
   )
 }

@@ -1,15 +1,19 @@
 import { useEffect } from 'react'
-import { RouterProvider } from 'react-router-dom'
 
-import { appRouter } from './appRouter.tsx'
+import { AppRouter } from './providers/Router'
 
 import '@/shared/base.css'
 import { checkFingerPrint } from '@/shared/lib'
+import { useAppDispatch, useTypedSelector } from '@/shared/model'
+import { initUser, isAuthLoading, isUserInitialized } from '@/entities/session'
 import { refreshThunk } from '@/features/Refresh'
-import { useAppDispatch } from '@/shared/model'
+import { FullPageLoader } from '@/shared/ui'
 
 export const App = () => {
   const dispatch = useAppDispatch()
+
+  const isLoading = useTypedSelector(isAuthLoading)
+  const isUserInit = useTypedSelector(isUserInitialized)
 
   useEffect(() => {
     checkFingerPrint()
@@ -17,7 +21,8 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refreshThunk())
+    dispatch(initUser())
   }, [dispatch])
 
-  return <RouterProvider router={appRouter} />
+  return !isUserInit || isLoading ? <FullPageLoader /> : <AppRouter />
 }
